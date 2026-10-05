@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Get Key — RealKid Hub</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --card: #16161f;
+    --card2: #1c1c26;
+    --border: #26262f;
+    --text: #e8e8ee;
+    --muted: #8a8a99;
+    --blue: #3b82f6;
+    --blue-dark: #2563eb;
+    --green: #10b981;
+    --green-dark: #059669;
+    --yellow: #fbbf24;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    padding: 20px 16px 40px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+  }
+
+  .wrap {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  /* ===== VERIFY CARD ===== */
+  .verify-card {
+    background: var(--card);
+    border: 1px solid #1e3a8a;
+    border-radius: 16px;
+    padding: 28px 20px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .shield {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: rgba(59,130,246,0.15);
+    border: 1px solid rgba(59,130,246,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 1.4rem;
+    color: var(--blue);
+  }
+
+  .verify-card h2 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .verify-card h2 .star { color: var(--yellow); font-size: 0.8rem; }
+
+  .verify-card p {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: 18px;
+  }
+
+  .turnstile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #2b2b33;
+    border: 1px solid #3a3a44;
+    border-radius: 6px;
+    padding: 12px 14px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.25s;
+    min-height: 62px;
+  }
+
+  .turnstile:hover { border-color: var(--blue); }
+
+  .turnstile.checked {
+    border-color: var(--green);
+    background: rgba(16,185,129,0.08);
+  }
+
+  .turnstile-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .spinner {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid rgba(59,130,246,0.25);
+    border-top-color: var(--blue);
+    animation: spin 0.9s linear infinite;
+    flex-shrink: 0;
+  }
+
+  .turnstile.done .spinner {
+    animation: none;
+    border: none;
+    background: var(--green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-weight: 900;
+    font-size: 0.75rem;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .turnstile-left span {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .turnstile.checked .turnstile-left span { color: var(--green); }
+
+  .cf-brand {
+    text-align: right;
+    font-size: 0.62rem;
+    color: #b0b0bb;
+    line-height: 1.3;
+  }
+
+  .cf-brand .cf-logo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    font-weight: 800;
+    font-size: 0.68rem;
+    letter-spacing: 0.5px;
+    color: #f6821f;
+  }
+
+  /* ===== GAME CARD ===== */
+  .game-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .game-banner {
+    position: relative;
+    height: 180px;
+    background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
+    overflow: hidden;
+  }
+
+  .game-banner .bg-art {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 30% 40%, rgba(220,60,40,0.55), transparent 55%),
+      radial-gradient(circle at 75% 60%, rgba(0,150,255,0.4), transparent 60%),
+      linear-gradient(120deg, #0d1b2e 0%, #102a4c 50%, #0a1422 100%);
+  }
+
+  .game-banner .diag {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      115borderdeg,
+      transparent 0 40px,
+      rgba(59,130,246,0.12) 40px 80px
+    );
+  }
+
+  .game-b);
+anner .silhouette {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 85%;
+       background:
+      radial-gradient(ellipse at 50% 30%, rgba(200,50,40,0.9), transparent 55%),
+      border radial-gradient(ellipse at 50% 80%, rgba(20,20,30,0.95),-radius transparent 70%);
+    filter: blur(2px);
+  }
+
+  .tag-link {
+    position: absolute;
+    top: 14px;
+    right: :14px;
+    background: rgba(0,0,0,0.65);
+    border: 1px solid rgba(251,191,36,0.5);
+    color: var(--yellow);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 999px;
+    backdrop-filter: blur(6px);
+  }
+
+  .game-body {
+    padding: 18px 18px 22px;
+  }
+
+  .game-body h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .meta {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size:  0.75rem;
+    color: var(--muted);
+  }
+
+  .actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr10;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .action-btn {
+    display: flex;
+    align-items: center;
+px    justify-content: center;
+    gap: 8px;
+    padding: 14px 12px;
+    border: none;
+    border-radius:;
+ 10px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.   2s;
+    color: #fff;
+  }
+
+  .action-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+  }
+
+  .btn-buy background {
+    background: linear-gradient(135deg, var(--green), var(--green-dark));
+  }
+
+  .btn-get {
+    background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  }
+
+  .action-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .action-btn .ic { font-size: 1rem; }
+
+  .download-btn {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid var(--: var(--card2);
+    color: var(--text);
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s;
+  }
+
+  .download-btn:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ===== VERIFY CARD ===== -->
+  <div class="verify-card">
+    <div class="shield">🛡️</div>
+    <h2>Xác minh bảo mật <span class="star">✦</span></h2>
+    <p>Hoàn thành xác minh bên dưới để mở khóa Get Key</p>
+
+    <div class="turnstile" id="turnstile" onclick="startVerify()">
+      <div class="turnstile-left">
+        <div class="spinner" id="spinner"></div>
+        <span id="ts-text">Verificando...</span>
+      </div>
+      <div class="cf-brand">
+        <div class="cf-logo">☁️ CLOUDFLARE</div>
+        <div>Privacy • Terms</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== GAME CARD ===== -->
+  <div class="game-card">
+    <div class="game-banner">
+      <div class="bg-art"></div>
+      <div class="diag"></div>
+      <div class="silhouette"></div>
+      <div class="tag-link">⚡ 1 liên kết</div>
+    </div>
+
+    <div class="game-body">
+      <h3>Blood Strike Global | VN</h3>
+
+      <div class="meta">
+        <div class="meta-item">🕐 24h</div>
+        <div class="meta-item">📱 1 Máy</div>
+      </div>
+
+      <div class="actions">
+        <button class="action-btn btn-buy">
+          <span class="ic">🛒</span> Mua Key
+        </button>
+        <button class="action-btn btn-get" id="getKeyBtn" disabled>
+          <span class="ic">🔑</span> Lấy Key
+        </button>
+      </div>
+
+      <button class="download-btn">
+        <span>⬇️</span> Tải Hack &amp; Tính Năng
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  let verifying = false;
+
+  function startVerify() {
+    const box = document.getElementById('turnstile');
+    const text = document.getElementById('ts-text');
+    const spinner = document.getElementById('spinner');
+    const getKeyBtn = document.getElementById('getKeyBtn');
+
+    if (verifying || box.classList.contains('checked')) return;
+    verifying = true;
+
+    text.textContent = 'Verificando...';
+
+    setTimeout(() => {
+      box.classList.add('checked', 'done');
+      spinner.textContent = '✓';
+      text.textContent = 'Đã xác minh thành công';
+      getKeyBtn.disabled = false;
+      verifying = false;
+    }, 1800);
+  }
+</script>
+
+</body>
+</html>
