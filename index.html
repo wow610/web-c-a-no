@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox Login Interface Clone</title>
+    <style>
+        /* Сброс стилей и базовые настройки */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            /* Имитация фонового изображения Roblox (заменено градиентом для автономности) */
+            background: linear-gradient(135deg, #1a2a40, #0d131f, #23334d);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        /* Контейнер, имитирующий мобильный экран */
+        .mobile-container {
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            max-height: 850px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 40px 20px;
+            background-color: rgba(0, 0, 0, 0.4); /* Затемнение фона */
+        }
+
+        /* Логотип ROBLOX */
+        .logo {
+            font-size: 48px;
+            font-weight: 900;
+            text-align: center;
+            letter-spacing: 2px;
+            margin-top: 40px;
+            margin-bottom: 50px;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-family: 'Arial Black', Impact, sans-serif;
+        }
+
+        /* Блок с формой */
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+
+        /* Поля ввода */
+        .input-field {
+            width: 100%;
+            padding: 18px 15px;
+            background-color: #232527;
+            border: 1px solid #393b3d;
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-field::placeholder {
+            color: #a0a0a0;
+        }
+
+        .input-field:focus {
+            border-color: #ffffff;
+        }
+
+        /* Основная кнопка "Đăng nhập" */
+        .btn-primary {
+            width: 100%;
+            padding: 18px;
+            background-color: rgba(255, 255, 255, 0.85);
+            color: #000000;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-primary:active {
+            background-color: rgba(255, 255, 255,
